@@ -1,0 +1,5 @@
+osman,yay,osmany
+ali,ak,alia
+veli,akar,velia
+ayse,kal,aysek
+fatma,git,fatmag
