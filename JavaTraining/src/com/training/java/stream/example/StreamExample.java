@@ -14,6 +14,8 @@ public class StreamExample {
                                               .collect(Collectors.toMap(d -> d.getUsername(),
                                                                         d -> d));
         System.out.println(collectLoc);
+
+
         //        Map<String, Person> collectLoc2 = Files.readAllLines(Paths.get("persons.txt"))
         //                                               .stream()
         //                                               .map(s -> {
