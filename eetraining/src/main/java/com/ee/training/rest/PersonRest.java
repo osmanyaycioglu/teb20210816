@@ -12,6 +12,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 @Path("/person")
 public class PersonRest {
@@ -40,6 +41,25 @@ public class PersonRest {
                + personParam.getWeight()
                + "/"
                + personParam.getHeight();
+    }
+
+    @Path("/addx")
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.TEXT_PLAIN)
+    public Response addX(@Valid final Person personParam) {
+        return Response.status(203)
+                       .header("deneme",
+                               "deneme")
+                       .entity("Hello 3 "
+                               + personParam.getName()
+                               + " "
+                               + personParam.getSurname()
+                               + " "
+                               + personParam.getWeight()
+                               + "/"
+                               + personParam.getHeight())
+                       .build();
     }
 
     @Path("/hello2")
