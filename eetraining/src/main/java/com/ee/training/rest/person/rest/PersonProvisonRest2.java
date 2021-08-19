@@ -43,16 +43,16 @@ public class PersonProvisonRest2 {
     @Path("/remove")
     @GET
     @Produces(MediaType.TEXT_PLAIN)
-    public String remove(@QueryParam("username") final String username) {
-        this.pp.remove(username);
+    public String remove(@QueryParam("pid") final Long personId) {
+        this.pp.remove(personId);
         return "SUCCESS";
     }
 
     @Path("/get/one")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Person getPerson(@QueryParam("username") final String username) {
-        return PersonMappings.fromDTO(this.pp.getOne(username));
+    public Person getPerson(@QueryParam("pid") final Long personId) {
+        return PersonMappings.fromDTO(this.pp.getOne(personId));
     }
 
     @Path("/get/all")

@@ -1,7 +1,17 @@
 package com.ee.training.rest.person.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "person")
 public class PersonDTO {
 
+    @Id
+    @GeneratedValue
+    private Long    perId;
     private String  name;
     private String  surname;
     private Integer weight;
@@ -46,6 +56,14 @@ public class PersonDTO {
 
     public void setUsername(final String usernameParam) {
         this.username = usernameParam;
+    }
+
+    public Long getPerId() {
+        return this.perId;
+    }
+
+    public void setPerId(final Long perIdParam) {
+        this.perId = perIdParam;
     }
 
 
