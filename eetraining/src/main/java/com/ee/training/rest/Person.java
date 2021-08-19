@@ -32,6 +32,10 @@ public class Person {
     @Min(50)
     private Integer height;
 
+    @NotEmpty
+    @Size(min = 5, max = 12, message = "username 5 ile 12 arasında olmalı")
+    private String  username;
+
     public String getName() {
         return this.name;
     }
@@ -62,6 +66,14 @@ public class Person {
 
     public void setHeight(final Integer heightParam) {
         this.height = heightParam;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String usernameParam) {
+        username = usernameParam;
     }
 
 

@@ -10,6 +10,7 @@ public class ExceptionHandler implements ExceptionMapper<Exception> {
 
     @Override
     public Response toResponse(final Exception exceptionParam) {
+        exceptionParam.printStackTrace();
         return Response.status(500)
                        .header("Content-Type",
                                MediaType.APPLICATION_JSON)
