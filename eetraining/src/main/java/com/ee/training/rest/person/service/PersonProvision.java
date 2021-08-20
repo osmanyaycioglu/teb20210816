@@ -18,6 +18,7 @@ public class PersonProvision {
 
     public void add(final PersonDTO personDTOParam) {
         this.ps.add(personDTOParam);
+        this.ps.update(personDTOParam);
     }
 
     public void update(final PersonDTO dtoParam) {

@@ -10,6 +10,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import javax.transaction.Transactional;
+import javax.transaction.Transactional.TxType;
 
 import com.ee.training.rest.person.model.PersonDTO;
 
@@ -24,7 +26,11 @@ public class PersonDao {
     //    @PersistenceUnit(unitName = "eetraining")
     //    private EntityManagerFactory emf;
 
-    // @Transactional
+    //    @Transactional(value = TxType.REQUIRES_NEW,
+    //                   rollbackOn = {
+    //                                  NullPointerException.class,
+    //                                  IllegalAccessError.class
+    //                   })
     public void add(final PersonDTO person) {
         //        EntityManager createEntityManagerLoc = emf.createEntityManager();
         //        createEntityManagerLoc.persist(person);
@@ -34,6 +40,7 @@ public class PersonDao {
         //person.setName("xyz");
     }
 
+    // @Transactional(TxType.NEVER)
     public void update(final PersonDTO person) {
         if (!this.em.contains(person)) {
             PersonDTO mergeLoc = this.em.merge(person);
@@ -54,6 +61,7 @@ public class PersonDao {
                             personId);
     }
 
+    @Transactional(TxType.NOT_SUPPORTED)
     public List<PersonDTO> getAll() {
         TypedQuery<PersonDTO> createQueryLoc = this.em.createQuery("select p from PersonDTO p",
                                                                    PersonDTO.class);

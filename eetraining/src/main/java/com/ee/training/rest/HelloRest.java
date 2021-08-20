@@ -3,6 +3,8 @@ package com.ee.training.rest;
 import java.io.Serializable;
 
 import javax.ejb.EJB;
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -10,17 +12,22 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.QueryParam;
 
+import com.ee.training.cdi.Greeting;
+import com.ee.training.cdi.interceptor.Inter;
 import com.ee.training.ejb.StatefulCalculator;
 import com.ee.training.ejb.StatelessCalculator;
 
 @Path("/first")
 //@RequestScoped
 //@SessionScoped
-//@ApplicationScoped
+@ApplicationScoped
 //@ConversationScoped
 public class HelloRest implements Serializable {
 
     private static final long serialVersionUID = -3051204073200686057L;
+
+    @Inject
+    private Greeting          greeting;
 
     // @Inject
     @EJB
@@ -28,6 +35,14 @@ public class HelloRest implements Serializable {
 
     @EJB
     private StatefulCalculator  scs;
+
+
+    @Path("/greet2")
+    @GET
+    @Inter
+    public String greetRest(@QueryParam("name") final String name) {
+        return this.greeting.greet(name);
+    }
 
     @Path("/calc/stateless")
     @GET
