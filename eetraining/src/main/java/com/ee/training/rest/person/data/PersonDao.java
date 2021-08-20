@@ -21,9 +21,16 @@ public class PersonDao {
     @PersistenceContext(unitName = "eetraining")
     private EntityManager em;
 
+    //    @PersistenceUnit(unitName = "eetraining")
+    //    private EntityManagerFactory emf;
+
     // @Transactional
     public void add(final PersonDTO person) {
+        //        EntityManager createEntityManagerLoc = emf.createEntityManager();
+        //        createEntityManagerLoc.persist(person);
+        //        createEntityManagerLoc.close();
         this.em.persist(person);
+
         //person.setName("xyz");
     }
 
@@ -56,6 +63,14 @@ public class PersonDao {
     public List<PersonDTO> getByName(final String name) {
         TypedQuery<PersonDTO> createQueryLoc = this.em.createQuery("select p from PersonDTO p where p.name=?1",
                                                                    PersonDTO.class);
+        createQueryLoc.setParameter(1,
+                                    name);
+        return createQueryLoc.getResultList();
+    }
+
+    public List<PersonDTO> getByNameEx(final String name) {
+        TypedQuery<PersonDTO> createQueryLoc = this.em.createNamedQuery("select_by_name",
+                                                                        PersonDTO.class);
         createQueryLoc.setParameter(1,
                                     name);
         return createQueryLoc.getResultList();

@@ -18,6 +18,8 @@ public class PersonMappings {
         personDTOLoc.setHeight(person.getHeight());
         personDTOLoc.setWeight(person.getWeight());
         personDTOLoc.setUsername(person.getUsername());
+        personDTOLoc.setAddress(person.getAddress());
+        personDTOLoc.setPhones(person.getPhones());
         return personDTOLoc;
     }
 
@@ -31,6 +33,8 @@ public class PersonMappings {
         personModel.setHeight(person.getHeight());
         personModel.setWeight(person.getWeight());
         personModel.setUsername(person.getUsername());
+        personModel.setAddress(person.getAddress());
+        personModel.setPhones(person.getPhones());
         return personModel;
     }
 
